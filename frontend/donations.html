@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Donations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Background blobs -->
+<div class="bg-blob blob1"></div>
+<div class="bg-blob blob2"></div>
+
+<div class="phone">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>My Donations</h2>
+    <p>Track your contributions</p>
+  </div>
+
+  <!-- DONATION LIST -->
+  <div class="card">
+    <h3>Donation History</h3>
+
+    <div class="donation-item">
+      <div>
+        <strong>₹ 1,000</strong>
+        <p>Order ID: DON_123456</p>
+      </div>
+      <span class="status pending">PENDING</span>
+    </div>
+
+    <div class="donation-item">
+      <div>
+        <strong>₹ 2,500</strong>
+        <p>Order ID: DON_123457</p>
+      </div>
+      <span class="status success">SUCCESS</span>
+    </div>
+
+    <div class="donation-item">
+      <div>
+        <strong>₹ 800</strong>
+        <p>Order ID: DON_123458</p>
+      </div>
+      <span class="status failed">FAILED</span>
+    </div>
+
+    <a href="index.html" class="link-btn">
+      ← Donate Again
+    </a>
+  </div>
+
+</div>
+
+<script>
+/* Later connect to:
+   GET /api/users/donations
+*/
+</script>
+
+</body>
+</html>

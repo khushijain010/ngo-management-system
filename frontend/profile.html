@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Background blobs -->
+<div class="bg-blob blob1"></div>
+<div class="bg-blob blob2"></div>
+
+<div class="phone">
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="https://i.pravatar.cc/100" class="avatar" alt="User Avatar" />
+    <h2>My Profile</h2>
+    <p>Your registration details</p>
+  </div>
+
+  <!-- PROFILE CARD -->
+  <div class="card">
+    <h3>Account Information</h3>
+
+    <div class="info-row">
+      <span>Name</span>
+      <strong id="userName">John Doe</strong>
+    </div>
+
+    <div class="info-row">
+      <span>Email</span>
+      <strong id="userEmail">john@email.com</strong>
+    </div>
+
+    <div class="info-row">
+      <span>Role</span>
+      <strong>User</strong>
+    </div>
+
+    <div class="info-row">
+      <span>Registered On</span>
+      <strong id="createdAt">2024-05-01</strong>
+    </div>
+
+    <a href="donations.html" class="link-btn">
+      View Donation History →
+    </a>
+  </div>
+
+</div>
+
+<script>
+/* Later connect to:
+   GET /api/users/me
+*/
+</script>
+
+</body>
+</html>
