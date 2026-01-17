@@ -460,3 +460,51 @@ button:disabled {
 .auth-page .phone {
   max-width: 420px;
 }
+
+/* TOP LEFT PROFILE LINK */
+.profile-link {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+}
+
+.profile-link:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.cause-list {
+  margin-top: 16px;
+}
+
+.cause-card {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.cause-card:hover {
+  transform: scale(1.02);
+}
+
+.cause-card h4 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.cause-card p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #555;
+}
+

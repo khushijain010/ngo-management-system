@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="logo">Donationrise</h2>
+    <nav>
+      <a class="active">Dashboard</a>
+      <a>Users</a>
+      <a>Donations</a>
+      <a id="logout">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <section class="hero">
+      <h1>Empower Change with Every Donation</h1>
+      <p>NGO Registration & Donation Management Dashboard</p>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card purple">Total Users <span>0</span></div>
+      <div class="stat-card blue">Total Donations <span>0</span></div>
+      <div class="stat-card green">Total Amount <span>LKR 0</span></div>
+      <div class="stat-card pink">Pending / Failed <span>0</span></div>
+    </section>
+
+    <section class="panel">
+      <h2>Registered Users</h2>
+      <div class="panel-actions">
+        <input placeholder="Search by email">
+        <button>Export CSV</button>
+      </div>
+      <div class="table-box"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Donations</h2>
+      <div class="table-box"></div>
+    </section>
+
+  </main>
+
+</div>
+
+</body>
+</html>
