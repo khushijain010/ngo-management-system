@@ -5,79 +5,160 @@
 
 body {
   margin: 0;
-  background: linear-gradient(135deg, #1d976c, #93f9b9);
   min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
+  /* Multi-layer gradient */
+  background:
+    radial-gradient(circle at top left, rgba(255, 200, 255, 0.6), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(180, 200, 255, 0.6), transparent 45%),
+    linear-gradient(135deg, #fbc2eb, #a6c1ee);
+
+  overflow: hidden;
 }
 
-.container {
+/* PHONE CONTAINER */
+.phone {
   width: 100%;
-  max-width: 420px;
-  padding: 20px;
+  max-width: 380px;
+  background: #f5f6fa;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
 }
 
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #6c63ff, #5a54e8);
+  color: white;
+  padding: 25px 20px 30px;
+  text-align: center;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-bottom: 10px;
+}
+
+.header h2 {
+  margin: 5px 0 0;
+}
+
+.header p {
+  margin: 4px 0 14px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* SEARCH */
+.search-box input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* CATEGORIES */
+.categories {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.cat {
+  background: rgba(255,255,255,0.2);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.cat.active {
+  background: white;
+  color: #5a54e8;
+}
+
+/* CARD */
 .card {
   background: white;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  margin: -25px 16px 16px;
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-h1 {
+.card h3 {
   margin-top: 0;
   text-align: center;
 }
 
-.subtitle {
-  text-align: center;
-  color: #555;
-  margin-bottom: 25px;
-}
-
-.field {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 6px;
-  color: #333;
-}
-
-input {
+/* FORM */
+form input {
   width: 100%;
   padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 15px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  font-size: 14px;
 }
 
-input:focus {
+form input:focus {
   outline: none;
-  border-color: #1d976c;
+  border-color: #6c63ff;
 }
 
 button {
   width: 100%;
   padding: 14px;
-  background: #1d976c;
+  background: linear-gradient(135deg, #6c63ff, #5a54e8);
+  border: none;
+  border-radius: 16px;
   color: white;
   font-size: 16px;
-  border: none;
-  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
-button:hover {
-  background: #16855f;
+button:disabled {
+  opacity: 0.6;
 }
 
 #message {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 10px;
   font-size: 14px;
 }
+/* BACKGROUND BLOBS */
+.bg-blob {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.blob1 {
+  background: #6c63ff;
+  top: -80px;
+  left: -80px;
+}
+
+.blob2 {
+  background: #fbc2eb;
+  bottom: -100px;
+  right: -100px;
+}
+
+/* Ensure phone stays above blobs */
+.phone {
+  position: relative;
+  z-index: 1;
+}
+

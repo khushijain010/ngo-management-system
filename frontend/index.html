@@ -2,43 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Support Our Cause</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>NGO Donation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<div class="bg-blob blob1"></div>
+<div class="bg-blob blob2"></div>
+<div class="phone">
 
-  <div class="container">
-    <div class="card">
-      <h1>Support Our Cause 💙</h1>
-      <p class="subtitle">
-        Your donation helps us make a real impact.
-      </p>
+  <!-- HEADER -->
+  <div class="header">
+    <img src="https://i.pravatar.cc/100" class="avatar" />
+    <h2>Welcome 💚</h2>
+    <p>Let’s make an impact today</p>
 
-      <form id="donationForm">
-        <div class="field">
-          <label>Your Name</label>
-          <input type="text" id="name" required />
-        </div>
+    <div class="search-box">
+      <input type="text" placeholder="Search causes..." />
+    </div>
 
-        <div class="field">
-          <label>Email Address</label>
-          <input type="email" id="email" required />
-        </div>
-
-        <div class="field">
-          <label>Donation Amount (LKR)</label>
-          <input type="number" id="amount" min="100" required />
-        </div>
-
-        <button type="submit" id="donateBtn">
-          Donate Now
-        </button>
-
-        <p id="message"></p>
-      </form>
+    <div class="categories">
+      <div class="cat active">People</div>
+      <div class="cat">Nature</div>
+      <div class="cat">Animals</div>
+      <div class="cat">Others</div>
     </div>
   </div>
 
-  <script src="donate.js"></script>
+  <!-- DONATION CARD -->
+  <div class="card">
+    <h3>Donate Now</h3>
+
+    <form id="donationForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Email Address" required />
+      <input type="number" id="amount" placeholder="Amount (LKR)" min="100" required />
+
+      <button type="submit" id="donateBtn">
+        Send Donation ❤️
+      </button>
+
+      <p id="message"></p>
+    </form>
+  </div>
+
+</div>
+
+<script src="donate.js"></script>
 </body>
 </html>
