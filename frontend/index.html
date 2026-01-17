@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Support Our Cause</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <h1>Support Our Cause 💙</h1>
+      <p class="subtitle">
+        Your donation helps us make a real impact.
+      </p>
+
+      <form id="donationForm">
+        <div class="field">
+          <label>Your Name</label>
+          <input type="text" id="name" required />
+        </div>
+
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="email" required />
+        </div>
+
+        <div class="field">
+          <label>Donation Amount (LKR)</label>
+          <input type="number" id="amount" min="100" required />
+        </div>
+
+        <button type="submit" id="donateBtn">
+          Donate Now
+        </button>
+
+        <p id="message"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="donate.js"></script>
+</body>
+</html>

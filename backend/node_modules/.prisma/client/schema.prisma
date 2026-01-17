@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Donation {
+  id         String   @id @default(uuid())
+  orderId    String   @unique
+  donorName  String
+  donorEmail String
+  amount     Float
+  currency   String   @default("LKR")
+  status     String   @default("PENDING")
+  paymentId  String?
+  createdAt  DateTime @default(now())
+}
