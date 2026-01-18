@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 // REGISTER
 exports.register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password} = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields required" });
@@ -22,13 +22,15 @@ exports.register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    const ADMIN_EMAIL = "chikki240806@gmail.com";
+    const role = email === ADMIN_EMAIL ? "ADMIN" : "USER";
 
     await prisma.user.create({
       data: {
         name,
         email,
         password: hashedPassword,
-        role: role === "admin" ? "ADMIN" : "USER"
+        role,
       }
     });
 
@@ -76,6 +78,4 @@ exports.login = async (req, res) => {
   console.error("LOGIN ERROR:", err);
   res.status(500).json({ message: "Login failed" });
 }
-
-
 };
