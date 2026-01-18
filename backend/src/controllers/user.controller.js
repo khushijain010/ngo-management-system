@@ -9,12 +9,13 @@ exports.getMe = async (req, res) => {
         id: true,
         name: true,
         email: true,
+        role: true,
         createdAt: true
       }
     });
     res.json(user);
-  } catch {
-    res.status(500).json({ message: "Error fetching user" });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch user profile" });
   }
 };
 
@@ -24,8 +25,9 @@ exports.getMyDonations = async (req, res) => {
       where: { userId: req.user.id },
       orderBy: { createdAt: "desc" }
     });
+
     res.json(donations);
-  } catch {
-    res.status(500).json({ message: "Error fetching donations" });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch donations" });
   }
 };
