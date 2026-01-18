@@ -12,8 +12,12 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <h2 class="logo">Donationrise</h2>
-    <nav>
+    <div class="sidebar-logo">
+      <div class="logo-icon">💜</div>
+      <span class="logo-text">Donationrise</span>
+    </div>
+
+    <nav class="sidebar-nav">
       <a class="active">Dashboard</a>
       <a>Users</a>
       <a>Donations</a>
@@ -21,7 +25,7 @@
     </nav>
   </aside>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main class="main-content">
 
     <section class="hero">
@@ -29,26 +33,65 @@
       <p>NGO Registration & Donation Management Dashboard</p>
     </section>
 
-    <section class="stats">
-      <div class="stat-card purple">Total Users <span>0</span></div>
-      <div class="stat-card blue">Total Donations <span>0</span></div>
-      <div class="stat-card green">Total Amount <span>LKR 0</span></div>
-      <div class="stat-card pink">Pending / Failed <span>0</span></div>
+    <section class="stats-wrapper">
+    <div class="stat-card purple">
+        <p>Total Users</p>
+        <h3>0</h3>
+    </div>
+
+    <div class="stat-card blue">
+        <p>Total Donations</p>
+        <h3>0</h3>
+    </div>
+    <div class="stat-card green">
+        <p>Total Amount</p>
+        <h3>0</h3>
+    </div>
+
+    <div class="stat-card orange">
+        <p>Pending / Failed</p>
+        <h3>0</h3>
+    </div>
     </section>
 
     <section class="panel">
-      <h2>Registered Users</h2>
-      <div class="panel-actions">
+    <h2>Registered Users</h2>
+
+    <div class="panel-actions">
         <input placeholder="Search by email">
         <button>Export CSV</button>
-      </div>
-      <div class="table-box"></div>
+    </div>
+
+    <div class="table-box table-users">
+        <div class="table-placeholder">
+            <span>Name</span>
+            <span>Email</span>
+            <span>Role</span>
+            <span>Date</span>
+         </div>
+        <!-- users table will come from backend -->
+    </div>
     </section>
 
     <section class="panel">
-      <h2>Donations</h2>
-      <div class="table-box"></div>
+    <h2>Donations</h2>
+
+    <div class="panel-actions">
+        <input placeholder="Search by donor / status">
+    </div>
+
+    <div class="table-box table-donations">
+        <!-- donations table will come from backend -->
+         <div class="table-placeholder">
+            <span>Name</span>
+            <span>Email</span>
+            <span>Role</span>
+            <span>Date</span>
+         </div>
+
+    </div>
     </section>
+
 
   </main>
 
