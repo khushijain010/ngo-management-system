@@ -12,10 +12,10 @@ document.getElementById("donationForm").addEventListener("submit", async (e) => 
 
   const payment = {
     sandbox: true,
-    merchant_id: "12xxxxx", // sandbox merchant id
-    return_url: "success.html",
-    cancel_url: "index.html",
-    notify_url: "",
+    merchant_id: "1233650", // sandbox merchant id
+    return_url: "http://127.0.0.1:5500/success.html",
+    cancel_url:  "http://127.0.0.1:5500/cancel.html",
+    notify_url: "http://localhost/api/payhere/notify",
     order_id: "DON_" + Date.now(),
     items: "NGO Donation",
     amount: amount,
