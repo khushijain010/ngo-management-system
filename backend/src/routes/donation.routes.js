@@ -7,6 +7,7 @@ const admin = require("../middleware/admin.middleware");
 
 // USER: create donation
 router.post("/", auth, donationController.createDonation);
+router.post("/verify", auth, donationController.updateDonationStatus);
 
 // USER: get own donations
 router.get("/my", auth, donationController.getMyDonations);

@@ -6,6 +6,10 @@ const userRoutes = require("./routes/user.routes");
 const donationRoutes = require("./routes/donation.routes");
 
 const app = express();
+const adminRoutes = require("./routes/admin.routes");
+
+app.use("/api/admin", adminRoutes);
+
 
 // Middleware
 app.use(cors());
