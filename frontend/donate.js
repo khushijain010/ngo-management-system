@@ -1,57 +1,57 @@
 document.getElementById("donationForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const name = document.getElementById("donorName").value;
-    const email = document.getElementById("donorEmail").value;
-    const amount = document.getElementById("donationAmount").value;
+  const name = localStorage.getItem("name") || 
+               document.getElementById("donorName").value;
+  const amount = document.getElementById("donationAmount").value;
 
-    console.log("--- 1. Checking PayHere SDK ---");
-    if (typeof payhere === "undefined") {
-        alert("Error: PayHere SDK is not loaded. Check your internet or Ad Blocker.");
-        return;
-    }
+  if (typeof payhere === "undefined") {
+    alert("PayHere SDK not loaded");
+    return;
+  }
 
-    try {
-        console.log("--- 2. Sending Request to Backend ---");
-        const res = await fetch("http://localhost:5000/api/donation/init", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, amount })
-        });
+  const payment = {
+    sandbox: true,
+    merchant_id: "12xxxxx", // sandbox merchant id
+    return_url: "success.html",
+    cancel_url: "index.html",
+    notify_url: "",
+    order_id: "DON_" + Date.now(),
+    items: "NGO Donation",
+    amount: amount,
+    currency: "LKR",
+    first_name: name,
+    last_name: "Donor",
+    email: "test@test.com",
+    phone: "0771234567",
+    address: "Colombo",
+    city: "Colombo",
+    country: "Sri Lanka"
+  };
 
-        if (!res.ok) {
-            const errText = await res.text();
-            throw new Error(errText);
-        }
+  payhere.onCompleted = async function () {
+    // ✅ save ONLY after success
+    await fetch("http://localhost:5000/api/donations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        amount,
+        status: "SUCCESS"
+      })
+    });
 
-        const paymentData = await res.json();
-        console.log("--- 3. Backend Response Received ---", paymentData);
+    alert("Donation Successful!");
+    window.location.href = "success.html";
+  };
 
-        // Define PayHere Callbacks
-        payhere.onCompleted = function (orderId) {
-            alert("✅ Payment Completed! Order ID: " + orderId);
-            window.location.href = "success.html";
-        };
+  payhere.onDismissed = function () {
+    alert("Payment cancelled");
+  };
 
-        payhere.onDismissed = function () {
-            alert("⚠️ Payment Dismissed");
-        };
+  payhere.onError = function (error) {
+    alert("Payment error: " + error);
+  };
 
-        payhere.onError = function (error) {
-          console.log('onError', error);
-          alert("Payment Error: " + error);
-        };
-
-        console.log('PAYMENT DATA:', paymentData);
-        payhere.startPayment(paymentData);
-
-
-        // Open the Window
-        console.log("--- 4. Opening PayHere Window ---");
-        payhere.startPayment(paymentData);
-
-    } catch (err) {
-        console.error("❌ DONATION ERROR:", err);
-        alert("Failed to start payment: " + err.message);
-    }
+  payhere.startPayment(payment);
 });
