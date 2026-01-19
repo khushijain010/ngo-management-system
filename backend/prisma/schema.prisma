@@ -17,9 +17,7 @@ model User {
 
 model Donation {
   id        Int      @id @default(autoincrement())
-  orderId   String   @unique
   name      String
-  email     String
   amount    Float
   status    String
   createdAt DateTime @default(now())
