@@ -3,7 +3,6 @@ const crypto = require("crypto");
 
 const prisma = new PrismaClient();
 
-<<<<<<< HEAD
 /**
  * Initializes the donation by creating a record in the database
  * and generating the security hash required by PayHere.
@@ -23,20 +22,6 @@ async function initDonation(req, res) {
 
     // 3. Database: Create a pending record
     await prisma.donation.create({
-=======
-// CREATE DONATION
-exports.createDonation = async (req, res) => {
-  try {
-    const { amount } = req.body;
-
-    if (!amount || amount <= 0) {
-      return res.status(400).json({ message: "Valid amount required" });
-    }
-    const orderId = "DON_" + Date.now();
-
-
-    const donation = await prisma.donation.create({
->>>>>>> a5e6bea27c57333d9923e43a67b386d89a0a28a4
       data: {
         orderId: orderId,
         name: name,
@@ -46,7 +31,6 @@ exports.createDonation = async (req, res) => {
       },
     });
 
-<<<<<<< HEAD
     // 4. Security: Generate the MD5 Hash exactly as PayHere expects
     const merchant_id = process.env.PAYHERE_MERCHANT_ID;
     const merchant_secret = process.env.PAYHERE_SECRET;
@@ -83,19 +67,9 @@ exports.createDonation = async (req, res) => {
   } catch (err) {
     console.error("❌ INIT DONATION ERROR:", err.message);
     res.status(500).json({ error: "Internal Server Error during initialization" });
-=======
-     res.status(201).json({
-      message: "Donation created",
-      donation
-    });
-  }catch (err) {
-    console.error("DONATION ERROR:", err);
-    res.status(500).json({ message: "Donation creation failed" });
->>>>>>> a5e6bea27c57333d9923e43a67b386d89a0a28a4
   }
 }
 
-<<<<<<< HEAD
 /**
  * Handles the server-to-server notification from PayHere (IPN)
  * This updates the donation status in your database.
@@ -133,84 +107,3 @@ module.exports = {
   initDonation,
   notify,
 };
-=======
-// USER: GET MY DONATIONS
-exports.getMyDonations = async (req, res) => {
-  try {
-    const donations = await prisma.donation.findMany({
-      where: { userId: req.user.id },
-      orderBy: { createdAt: "desc" }
-    });
-
-    res.json(donations);
-  } catch (err) {
-    res.status(500).json({ message: "Failed to fetch donations" });
-  }
-};
-
-// ADMIN: GET ALL DONATIONS
-exports.getAllDonations = async (req, res) => {
-  try {
-    const donations = await prisma.donation.findMany({
-      include: { user: true },
-      orderBy: { createdAt: "desc" }
-    });
-
-    res.json(donations);
-  } catch (err) {
-    res.status(500).json({ message: "Failed to fetch all donations" });
-  }
-};
-
-exports.updateDonationStatus = async (req, res) => {
-  try {
-    const { orderId, status } = req.body;
-
-    if (!orderId || !status) {
-      return res.status(400).json({ message: "Invalid data" });
-    }
-
-    const donation = await prisma.donation.update({
-      where: { orderId },
-      data: { status }
-    });
-
-    res.json({ message: "Donation updated", donation });
-  } catch (err) {
-    console.error("UPDATE DONATION ERROR:", err);
-    res.status(500).json({ message: "Update failed" });
-  }
-};
-exports.verifyDonation = async (req, res) => {
-  try {
-    const { orderId, status } = req.body;
-
-    if (!orderId || !status) {
-      return res.status(400).json({ message: "orderId and status required" });
-    }
-
-    const donation = await prisma.donation.findUnique({
-      where: { orderId }
-    });
-
-    if (!donation) {
-      return res.status(404).json({ message: "Donation not found" });
-    }
-
-    const updatedDonation = await prisma.donation.update({
-      where: { orderId },
-      data: { status }
-    });
-
-    res.json({
-      message: "Donation status updated",
-      donation: updatedDonation
-    });
-
-  } catch (err) {
-    console.error("VERIFY ERROR:", err);
-    res.status(500).json({ message: "Update failed" });
-  }
-};
-
->>>>>>> a5e6bea27c57333d9923e43a67b386d89a0a28a4
