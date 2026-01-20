@@ -10,6 +10,8 @@ const cors = require("cors");
 app.use(cors({
   origin: "*"
 }));
-const donationRoutes = require("./routes/donation.routes");
-app.use("/api/donation", donationRoutes);
+
+const payhereRoutes = require("./routes/payhere.routes");
+
+app.use("/api/payhere", payhereRoutes);
 

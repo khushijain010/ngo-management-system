@@ -1,10 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/donation.controller");
+const donationController = require("../controllers/donation.controller");
 
-router.post("/", controller.createDonation);
-router.get("/admin", controller.getSuccessfulDonations);
-router.get("/user/:email", controller.getUserDonations);
+// Save donation
+router.post("/", donationController.createDonation);
 
+// Admin – all successful
+router.get("/success", donationController.getSuccessfulDonations);
+
+// User-specific donations
+router.get("/user/:email", donationController.getUserDonations);
 
 module.exports = router;

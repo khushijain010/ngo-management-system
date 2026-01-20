@@ -14,20 +14,15 @@
     <div class="phone">
       <!-- HEADER -->
       <div class="header">
+        <div class="donation-icon">💜</div>
         <a href="profile.html" class="profile-link">My Profile</a>
-        <img src="https://i.pravatar.cc/100" class="avatar" />
-        <h2>Welcome 💜</h2>
+        <h2>Welcome</h2>
         <p>Let’s make an impact today</p>
+      </div> <!-- ✅ THIS WAS MISSING -->
 
       <!-- DONATION CARD -->
       <div class="card">
         <h3>Donate Now</h3>
-      <div class="category-group">
-          <!-- <button type="button" class="category-btn active">People</button>
-          <button type="button" class="category-btn">Animals</button>
-          <button type="button" class="category-btn">Plants</button> -->
-      </div>
-
 
         <form id="donationForm">
           <input id="donorName" type="text" placeholder="Your Name" required />
@@ -43,13 +38,11 @@
             placeholder="Amount"
             required
           />
-          <!-- <input type="hidden" id="donationCategory" value="People" /> -->
           <button type="submit">Send Donation ❤️</button>
         </form>
       </div>
     </div>
-
-    <!-- <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script> -->
+    <script src="https://www.payhere.lk/lib/payhere.js"></script>
     <script src="donate.js"></script>
   </body>
 </html>

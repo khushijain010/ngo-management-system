@@ -114,10 +114,15 @@ const prisma = new PrismaClient();
 // Create donation (only SUCCESS stored)
 exports.createDonation = async (req, res) => {
   try {
-    const { amount, name, email, status, category} = req.body;
+    const { amount, name, email, status, category } = req.body;
 
-    if (!amount || !name || status !== "SUCCESS") {
-      return res.status(400).json({ message: "Invalid donation" });
+    // ✅ validate properly
+    if (!amount || !name || !email) {
+      return res.status(400).json({ message: "Missing fields" });
+    }
+
+    if (status !== "SUCCESS") {
+      return res.status(400).json({ message: "Only SUCCESS allowed" });
     }
 
     const donation = await prisma.donation.create({
@@ -126,12 +131,13 @@ exports.createDonation = async (req, res) => {
         email,
         amount: Number(amount),
         status,
-        category
+        category: category || "General"
       }
     });
 
     res.status(201).json(donation);
   } catch (err) {
+    console.error("Donation error:", err);
     res.status(500).json({ message: "Donation failed" });
   }
 };

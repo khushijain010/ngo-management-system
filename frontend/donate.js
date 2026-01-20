@@ -1,63 +1,70 @@
-
-document.getElementById("donationForm").addEventListener("submit", (e) => {
+document.getElementById("donationForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const name =
-    localStorage.getItem("name") ||
-    document.getElementById("donorName").value;
-  
+  if (typeof payhere === "undefined") {
+    alert("PayHere SDK not loaded");
+    return;
+  }
+
+  const name = document.getElementById("donorName").value;
+  const email = document.getElementById("donorEmail").value;
   const amount = document.getElementById("donationAmount").value;
 
-
   if (!amount || amount <= 0) {
-    alert("Please enter a valid amount");
+    alert("Enter a valid amount");
     return;
   }
 
+  const orderId = "DON_" + Date.now();
 
-  // Sandbox simulation confirmation
-  const proceed = confirm(
-    `Proceed with sandbox donation of Rs. ${amount}?`
-  );
+  const payment = {
+    sandbox: true, // ✅ THIS enables sandbox
+    merchant_id: "1233650", // PayHere SANDBOX merchant ID
+    return_url: "success.html",
+    cancel_url: "index.html",
+    notify_url: "http://localhost:5000/api/donation/notify",
 
-  if (!proceed) {
-    alert("Payment cancelled");
-    return;
-  }
+    order_id: orderId,
+    items: "NGO Donation",
+    amount: amount,
+    currency: "LKR",
 
-document.querySelectorAll(".category-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".category-btn")
-      .forEach(b => b.classList.remove("active"));
+    first_name: name,
+    last_name: "Donor",
+    email: email,
+    phone: "0771234567",
+    address: "Colombo",
+    city: "Colombo",
+    country: "Sri Lanka"
+  };
 
-    btn.classList.add("active");
-    categoryInput.value = btn.textContent.trim();
-  });
-});
-
-
-  // Save ONLY successful donation
-  const email = localStorage.getItem("email");
-  fetch("http://localhost:5000/api/donations", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      email,
-      amount,
-      category,
-      status: "SUCCESS"
-    })
-  })
-    .then(res => {
-      if (!res.ok) throw new Error("Save failed");
-      return res.json();
-    })
-    .then(() => {
-      alert("Donation Successful (Sandbox)");
-      window.location.href = "success.html";
-    })
-    .catch(() => {
-      alert("Donation failed. Please try again.");
+  // 🔔 Payment completed
+  payhere.onCompleted = function (orderId) {
+    fetch("http://localhost:5000/api/donations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        amount,
+        status: "SUCCESS"
+      })
     });
+
+    alert("Donation successful 💜");
+    window.location.href = "donations.html";
+  };
+
+  // ❌ Payment cancelled
+  payhere.onDismissed = function () {
+    alert("Payment cancelled");
+  };
+
+  // ⚠️ Error
+  payhere.onError = function (error) {
+    alert("Payment error: " + error);
+  };
+
+  // 🚀 OPEN PAYHERE SANDBOX POPUP
+  payhere.startPayment(payment);
 });

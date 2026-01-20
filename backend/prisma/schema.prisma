@@ -19,8 +19,9 @@ model Donation {
   id        Int      @id @default(autoincrement())
   name      String
   email     String
-  amount    Float
+  amount    Int
   status    String
+  category  String   @default("General")
   createdAt DateTime @default(now())
 }
 

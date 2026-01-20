@@ -152,7 +152,9 @@ loginForm.addEventListener("submit", (e) => {
     localStorage.setItem("token", "mock-token");
     localStorage.setItem("role", "ADMIN");
     localStorage.setItem("name", "Admin");
+    localStorage.setItem("userEmail", "chikki240806@gmail.com");
     window.location.href = "admin.html";
+
     return;
   }
 
@@ -167,7 +169,7 @@ loginForm.addEventListener("submit", (e) => {
   localStorage.setItem("token", "mock-token");
   localStorage.setItem("role", stored.role);
   localStorage.setItem("name", stored.name);
-  localStorage.setItem("email", email);
+  localStorage.setItem("userEmail", email);
 
   window.location.href = "index.html";
 });

@@ -56,10 +56,54 @@
 </div>
 
 <script>
-/* Later connect to:
-   GET /api/users/donations
-*/
+async function loadMyDonations() {
+  const email = localStorage.getItem("userEmail");
+
+  if (!email) {
+    alert("Please login first");
+    window.location.href = "index.html";
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      `http://localhost:5000/api/donations/user/${email}`
+    );
+
+    const donations = await res.json();
+    const list = document.getElementById("donationList");
+    list.innerHTML = "";
+
+    if (donations.length === 0) {
+      list.innerHTML = "<p style='text-align:center;'>No donations yet</p>";
+      return;
+    }
+
+    donations.forEach(d => {
+      const item = document.createElement("div");
+      item.className = "donation-item";
+
+      item.innerHTML = `
+        <div>
+          <strong>₹ ${d.amount}</strong>
+          <p>${new Date(d.createdAt).toLocaleString()}</p>
+        </div>
+        <span class="status ${d.status.toLowerCase()}">
+          ${d.status}
+        </span>
+      `;
+
+      list.appendChild(item);
+    });
+  } catch (err) {
+    console.error(err);
+    alert("Failed to load donations");
+  }
+}
+
+loadMyDonations();
 </script>
+
 
 </body>
 </html>

@@ -8,57 +8,58 @@
 </head>
 <body>
 
-<!-- Background blobs -->
-<div class="bg-blob blob1"></div>
-<div class="bg-blob blob2"></div>
+  <!-- Background blobs -->
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
 
-<div class="phone">
+  <div class="phone">
 
-  <!-- HEADER -->
-  <div class="header">
-    <img src="https://i.pravatar.cc/100" class="avatar" alt="User Avatar" />
-    <h2>My Profile</h2>
-    <p>Your registration details</p>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="profile-heart">
+        <span>💜</span>
+      </div>
+      <h2>My Profile</h2>
+      <p>Your registration details</p>
+    </div>
+
+    <!-- PROFILE CARD -->
+    <div class="card">
+      <h3>Account Information</h3>
+
+      <div class="info-row">
+        <span>Name</span>
+        <strong id="profileName">-</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Email</span>
+        <strong id="profileEmail">-</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Role</span>
+        <strong id="profileRole">-</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Registered On</span>
+        <strong id="createdAt">-</strong>
+      </div>
+
+      <!-- Donation summary (optional preview area) -->
+      <div id="donationHistory"></div>
+      <p id="noDonations" style="display:none; text-align:center; opacity:0.7;">
+        No donations yet
+      </p>
+
+      <a href="donations.html" class="link-btn">
+        View Donation History →
+      </a>
+    </div>
+
   </div>
 
-  <!-- PROFILE CARD -->
-  <div class="card">
-    <h3>Account Information</h3>
-
-    <div class="info-row">
-      <span>Name</span>
-       <strong id="profileName"></strong></p>
-      
-    </div>
-
-    <div class="info-row">
-      <span>Email</span>
-      <strong id="profileEmail"></strong></p>
-
-    </div>
-
-    <div class="info-row">
-      <span>Role</span>
-      <strong id="profileRole"></strong></p>
-    </div>
-
-    <div class="info-row">
-      <span>Registered On</span>
-      <strong id="createdAt">-</strong>
-    </div>
-    <div id="donationHistory"></div>
-    <p id="noDonations" style="display:none;">No donations yet</p>
-
-
-
-    <a href="donations.html" class="link-btn">
-      View Donation History →
-    </a>
-  </div>
-
-</div>
-
-<script src="profile.js"></script>
-
+  <script src="profile.js"></script>
 </body>
 </html>
