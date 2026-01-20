@@ -8,7 +8,7 @@ $email = $data["email"];
 $amount = number_format((float)$data["amount"], 2, '.', '');
 
 $merchant_id = "1233650";
-$merchant_secret = "NDE3NDMzNzk1MzE3MDM2OTY2NDQyNDQzNzI4MDk2NDA4NzMyODk4";
+$merchant_secret = "MzMxMzUwMTg3MDM5MjA3NDU2MzkxNTIxMzA4NDI0MjY0NjUyMjY2OQ==";
 $order_id = uniqid();
 $currency = "LKR";
 
