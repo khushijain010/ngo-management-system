@@ -167,6 +167,7 @@ loginForm.addEventListener("submit", (e) => {
   localStorage.setItem("token", "mock-token");
   localStorage.setItem("role", stored.role);
   localStorage.setItem("name", stored.name);
+  localStorage.setItem("email", email);
 
   window.location.href = "index.html";
 });

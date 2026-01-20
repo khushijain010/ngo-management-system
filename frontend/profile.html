@@ -27,23 +27,29 @@
 
     <div class="info-row">
       <span>Name</span>
-      <strong id="userName">John Doe</strong>
+       <strong id="profileName"></strong></p>
+      
     </div>
 
     <div class="info-row">
       <span>Email</span>
-      <strong id="userEmail">john@email.com</strong>
+      <strong id="profileEmail"></strong></p>
+
     </div>
 
     <div class="info-row">
       <span>Role</span>
-      <strong>User</strong>
+      <strong id="profileRole"></strong></p>
     </div>
 
     <div class="info-row">
       <span>Registered On</span>
-      <strong id="createdAt">2024-05-01</strong>
+      <strong id="createdAt">-</strong>
     </div>
+    <div id="donationHistory"></div>
+    <p id="noDonations" style="display:none;">No donations yet</p>
+
+
 
     <a href="donations.html" class="link-btn">
       View Donation History →
@@ -52,11 +58,7 @@
 
 </div>
 
-<script>
-/* Later connect to:
-   GET /api/users/me
-*/
-</script>
+<script src="profile.js"></script>
 
 </body>
 </html>

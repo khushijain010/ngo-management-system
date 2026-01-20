@@ -114,7 +114,7 @@ const prisma = new PrismaClient();
 // Create donation (only SUCCESS stored)
 exports.createDonation = async (req, res) => {
   try {
-    const { amount, name, status } = req.body;
+    const { amount, name, email, status, category} = req.body;
 
     if (!amount || !name || status !== "SUCCESS") {
       return res.status(400).json({ message: "Invalid donation" });
@@ -123,8 +123,10 @@ exports.createDonation = async (req, res) => {
     const donation = await prisma.donation.create({
       data: {
         name,
+        email,
         amount: Number(amount),
-        status
+        status,
+        category
       }
     });
 
@@ -147,3 +149,19 @@ exports.getSuccessfulDonations = async (req, res) => {
     res.status(500).json({ message: "Fetch failed" });
   }
 };
+
+exports.getUserDonations = async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    const donations = await prisma.donation.findMany({
+      where: { email },
+      orderBy: { createdAt: "desc" }
+    });
+
+    res.json(donations);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch user donations" });
+  }
+};
+
